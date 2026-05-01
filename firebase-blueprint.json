@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "User": {
+      "title": "Usuário",
+      "description": "Dados globais de usuários do sistema",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["patient", "doctor", "admin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "role", "phoneNumber"]
+    },
+    "Doctor": {
+      "title": "Médico",
+      "description": "Perfil detalhado do profissional de saúde",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "specialty": { "type": "string" },
+        "bio": { "type": "string" },
+        "rating": { "type": "number" },
+        "consultPrice": { "type": "string" },
+        "experience": { "type": "string" },
+        "verified": { "type": "boolean" }
+      },
+      "required": ["userId", "specialty", "consultPrice"]
+    },
+    "Appointment": {
+      "title": "Consulta",
+      "description": "Registro de marcação de consulta",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "doctorId": { "type": "string" },
+        "clinicId": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "cancelled", "completed"] },
+        "paymentStatus": { "type": "string", "enum": ["unpaid", "paid"] },
+        "transactionId": { "type": "string" }
+      },
+      "required": ["userId", "doctorId", "date", "time", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Coleção de usuários do sistema"
+    },
+    "/doctors/{doctorId}": {
+      "schema": "Doctor",
+      "description": "Perfil público dos médicos"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "Marcações de consultas hospitalares"
+    }
+  }
+}

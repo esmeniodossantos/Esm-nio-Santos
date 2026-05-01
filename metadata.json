@@ -1,0 +1,12 @@
+{
+  "name": "Saúde Pronta",
+  "description": "Uma plataforma moderna e intuitiva para marcação de consultas hospitalares em Angola, facilitando o acesso à saúde com rapidez e segurança.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "Firebase Authentication",
+    "Cloud Firestore",
+    "Real-time Booking"
+  ]
+}
